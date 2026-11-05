@@ -157,7 +157,6 @@ def preorder(v, res):
 
 q = int(input())
 tree = None
-ans = []
 
 for i in range(q):
   cmd = input().split()
@@ -169,28 +168,29 @@ for i in range(q):
     tree = delete(tree, int(cmd[1]))
 
   elif cmd[0] == "exists":
-    ans.append("YES" if find(tree, int(cmd[1])) else "NO")
+    if find(tree, int(cmd[1])):
+      print("YES")
+    else:
+      print("NO")
 
   elif cmd[0] == "next":
-    ans.append(str(next_key(tree, int(cmd[1]))))
+    print(next_key(tree, int(cmd[1])))
   elif cmd[0] == "prev":
-    ans.append(str(prev_key(tree, int(cmd[1]))))
+    print(prev_key(tree, int(cmd[1])))
 
   elif cmd[0] == "root":
     if tree is None:
-      ans.append("Empty")
+      print("Empty")
     else:
-      ans.append(str(tree.key))
+      print(tree.key)
 
   elif cmd[0] == "height":
-    ans.append(str(get_h(tree)))
+    print(get_h(tree))
 
   elif cmd[0] == "print":
     res = []
     preorder(tree, res)
     if res:
-      ans.append(" ".join(res))
+      print(" ".join(res))
     else:
-      ans.append("Empty")
-
-print("\n".join(ans))
+      print("Empty")
